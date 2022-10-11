@@ -96,3 +96,28 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.invoice_items
     OWNER to postgres;
+
+    CREATE INDEX "invoice_items index"
+    ON public.invoice_items USING btree
+    (id ASC NULLS LAST, unit_price ASC NULLS LAST, quantity ASC NULLS LAST, total_price ASC NULLS LAST, invoice_id ASC NULLS LAST, treatment_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+
+    CREATE INDEX "invoices index"
+    ON public.invoices USING btree
+    (id ASC NULLS LAST, total_amount ASC NULLS LAST, generated_at ASC NULLS LAST, payed_at ASC NULLS LAST, medical_history_id ASC NULLS LAST)
+    TABLESPACE pg_default;
+
+    CREATE INDEX "medical_histories index"
+    ON public.medical_histories USING btree
+    (id ASC NULLS LAST, admitted_at ASC NULLS LAST, patient_id ASC NULLS LAST, status ASC NULLS LAST)
+    TABLESPACE pg_default;
+
+    CREATE INDEX "patients index"
+    ON public.patients USING btree
+    (id ASC NULLS LAST, name ASC NULLS LAST, date_of_birth ASC NULLS LAST)
+    TABLESPACE pg_default;
+
+    CREATE INDEX "treatments index"
+    ON public.treatments USING btree
+    (id ASC NULLS LAST, type ASC NULLS LAST, name ASC NULLS LAST)
+    TABLESPACE pg_default;
