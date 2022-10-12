@@ -121,3 +121,9 @@ ALTER TABLE IF EXISTS public.invoice_items
     ON public.treatments USING btree
     (id ASC NULLS LAST, type ASC NULLS LAST, name ASC NULLS LAST)
     TABLESPACE pg_default;
+
+    CREATE TABLE medical_histories_has_treatments (
+    medical_history_id int refrences medical_histories(id),
+    treatment_id int refrences treatments(id),
+    );
+    
